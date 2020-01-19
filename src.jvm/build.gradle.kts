@@ -5,8 +5,6 @@ plugins {
 dependencies {
 	
 	implementation(kotlin("stdlib-jdk8"))
-	implementation("ion:src.jvm")
-	expectedBy(project(":pulsar.core"))
 	
 	testImplementation("io.kotlintest:kotlintest-runner-junit5:3.3.0")
 	testCompile("org.assertj:assertj-core:3.11.1")
