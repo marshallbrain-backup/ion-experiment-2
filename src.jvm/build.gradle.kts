@@ -5,6 +5,7 @@ plugins {
 dependencies {
 	
 	implementation(kotlin("stdlib-jdk8"))
+	expectedBy(project(":src.common"))
 	
 	testImplementation("io.kotlintest:kotlintest-runner-junit5:3.3.0")
 	testCompile("org.assertj:assertj-core:3.11.1")
