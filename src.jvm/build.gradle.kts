@@ -5,6 +5,8 @@ plugins {
 dependencies {
 	
 	implementation(kotlin("stdlib-jdk8"))
+	implementation("org.slf4j:slf4j-api:1.7.5")
+	implementation("org.slf4j:slf4j-log4j12:1.7.5")
 	expectedBy(project(":src.common"))
 	
 	testImplementation("io.kotlintest:kotlintest-runner-junit5:3.3.0")
