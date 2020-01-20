@@ -1,26 +1,91 @@
 package com.marshalldbrain.ion.collections
 
+import io.kotlintest.TestCase
+import io.kotlintest.matchers.boolean.shouldBeFalse
+import io.kotlintest.matchers.boolean.shouldBeTrue
 import io.kotlintest.shouldBe
+import io.kotlintest.specs.AbstractAnnotationSpec
 import io.kotlintest.specs.FunSpec
 
-internal class LinkedListTest : FunSpec({
+class LinkedListTest : FunSpec() {
 	
-	test("Get size")
+	private lateinit var linkedList: LinkedList<Any>
 	
-	test("add")
-	
-	test("peek")
-	
-	test("poll")
-	
-	context("Iterator Test") {
+	override fun beforeTest(testCase: TestCase) {
 		
-		test("Has next")
-		
-		test("Remove")
-		
-		test("Next")
+		linkedList = LinkedList()
 		
 	}
 	
-})
+	init {
+		
+		test("Get size") {
+			
+			linkedList.size shouldBe 0
+			
+		}
+		
+		test("Add") {
+			
+			linkedList.add("Test").shouldBeTrue()
+			
+		}
+		
+		test("Peek") {
+			
+			linkedList.add("Test")
+			
+			linkedList.peek() shouldBe "Test"
+			
+		}
+		
+		test("Poll") {
+			
+			linkedList.add("Test")
+			
+			linkedList.poll() shouldBe "Test"
+			linkedList.size shouldBe 0
+			
+		}
+		
+		context("Iterator Test") {
+			
+			test("Has next") {
+				
+				linkedList.add("Test")
+				
+				val iterator = linkedList.iterator()
+				
+				iterator.hasNext().shouldBeTrue()
+				
+			}
+			
+			test("Remove").config(enabled = false) {
+
+				linkedList.add("Test")
+
+				val iterator = linkedList.iterator()
+
+				iterator.next()
+				iterator.remove()
+
+				iterator.hasNext().shouldBeFalse()
+
+			}
+			
+			test("Next") {
+				
+				linkedList.add("Test")
+				
+				val iterator = linkedList.iterator()
+				
+				iterator.next() shouldBe "Test"
+				iterator.hasNext().shouldBeFalse()
+				
+			}
+			
+		}
+		
+	}
+	
+}
