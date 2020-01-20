@@ -48,21 +48,19 @@ internal class LinkedList<E>() : AbstractMutableCollection<E>(), Queue<E> {
 	
 	private open inner class IteratorImpl : MutableIterator<E> {
 		protected var node = head
+		protected var lastNode: Node<E> = Terminal()
 		
-		override fun hasNext(): Boolean = node is Link && (node as Link).next is Link
+		override fun hasNext(): Boolean = node is Link
 		
 		override fun remove() {
-			val last = (node as Link).prev as Link
-			(last.prev as Link).next = last.next
-			(last.next as Link).prev = last.prev
-			count--
+			throw UnsupportedOperationException()
 		}
 		
 		override fun next(): E {
-			if (!hasNext()) throw NoSuchElementException()
-			val n = node as Link
-			node = n.next
-			return n.value
+			val last = node as Link
+			lastNode = last
+			node = last.next
+			return last.value
 		}
 		
 	}
