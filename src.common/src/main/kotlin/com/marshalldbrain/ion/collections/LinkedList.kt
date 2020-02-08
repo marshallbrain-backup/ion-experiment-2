@@ -40,6 +40,9 @@ internal class LinkedList<E>() : AbstractMutableCollection<E>(), Queue<E> {
 		val node = head
 		if (node is Link) {
 			head = node.next
+			if (head is Terminal) {
+				tail = Terminal()
+			}
 			count--
 			return node.value
 		}
