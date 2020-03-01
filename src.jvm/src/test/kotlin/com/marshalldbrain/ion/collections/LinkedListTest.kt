@@ -1,6 +1,5 @@
 package com.marshalldbrain.ion.collections
 
-import com.marshalldbrain.ion.sequences.randomIntRange
 import io.kotlintest.TestCase
 import io.kotlintest.matchers.boolean.shouldBeFalse
 import io.kotlintest.matchers.boolean.shouldBeTrue
@@ -9,25 +8,20 @@ import io.kotlintest.properties.Gen
 import io.kotlintest.properties.forAll
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.FunSpec
+import java.math.BigInteger
 import kotlin.random.Random
 
 class LinkedListTest : FunSpec({
 	
 	test("Get size") {
+			
+		val linkedList = LinkedList<String>()
 		
-		var linkedList: LinkedList<String>
-		
-		forAll(RangedInt(min = 1, max = 10)) { a: Int ->
-			
-			linkedList = LinkedList()
-			
-			forAll(a) { b: String ->
-				linkedList.add(b)
-			}
-			
-			linkedList.size == a
-			
+		repeat(8) {
+			linkedList.add("")
 		}
+		
+		linkedList.size == 8
 		
 	}
 	
@@ -119,17 +113,4 @@ class LinkedListTest : FunSpec({
 		
 	}
 	
-}) {
-	
-	class RangedInt(val min: Int = 0, val max: Int) : Gen<Int> {
-		override fun constants(): Iterable<Int> {
-			return emptyList()
-		}
-		
-		override fun random(): Sequence<Int> {
-			return randomIntRange(min, max)
-		}
-		
-	}
-	
-}
+})
